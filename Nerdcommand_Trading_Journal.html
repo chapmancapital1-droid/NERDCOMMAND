@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NERDCOMMAND Trading Journal</title>
+<style>
+  :root{
+    --ink:#0a0612;
+    --panel:#f6f4ff;
+    --purple:#5b3aa8;
+    --teal:#0fa68e;
+    --gold:#c79a17;
+    --red:#c0334f;
+    --line:#b9b0d6;
+    --softline:#d9d2f0;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:#e9e6f5;
+    color:var(--ink);
+    font-family:"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:14px;
+    line-height:1.5;
+  }
+  .wrap{max-width:820px;margin:0 auto;padding:24px;}
+  .sheet{
+    background:#fff;
+    border:1px solid var(--softline);
+    border-radius:10px;
+    padding:26px 30px;
+    margin-bottom:26px;
+    box-shadow:0 2px 10px rgba(90,60,150,.08);
+  }
+  .brand{
+    display:flex;justify-content:space-between;align-items:center;
+    border-bottom:2px solid var(--purple);padding-bottom:10px;margin-bottom:6px;
+  }
+  .brand .logo{font-weight:bold;letter-spacing:2px;font-size:18px;color:var(--purple);}
+  .brand .logo span{color:var(--gold);}
+  .brand .tag{color:#777;font-size:12px;letter-spacing:1px;}
+
+  h2{font-size:22px;margin:8px 0 4px;color:var(--ink);}
+  .sub{color:#666;font-size:13px;margin:0 0 14px;}
+
+  /* RULES STRIP */
+  .rules{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:14px 0 6px;
+  }
+  .rule{
+    border:1px solid var(--softline);border-radius:8px;padding:8px 6px;text-align:center;background:var(--panel);
+  }
+  .rule b{display:block;color:var(--teal);font-size:13px;}
+  .rule small{color:#555;font-size:11px;}
+
+  /* FORM GRID */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px 14px;margin-top:14px;}
+  .field{display:flex;flex-direction:column;}
+  .field.full{grid-column:1 / -1;}
+  .field.half{grid-column:span 2;}
+  .field label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--purple);font-weight:bold;margin-bottom:3px;}
+  .field .line{border-bottom:1.5px solid #999;height:24px;}
+  .field .box{border:1.5px solid var(--softline);border-radius:6px;height:26px;}
+  .field .bigbox{border:1.5px solid var(--softline);border-radius:6px;height:62px;}
+
+  .checklist{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;margin-top:6px;}
+  .checklist div{font-size:12px;}
+  .checklist .c{display:inline-block;width:13px;height:13px;border:1.5px solid var(--purple);border-radius:3px;margin-right:6px;vertical-align:-2px;}
+
+  .section-title{
+    background:var(--purple);color:#fff;font-size:12px;letter-spacing:2px;
+    padding:5px 10px;border-radius:5px;margin:16px 0 4px;display:inline-block;
+  }
+
+  .pnl-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px;}
+  .pnl-row .field .box{height:34px;background:var(--panel);}
+
+  .footer{margin-top:14px;display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--softline);padding-top:8px;}
+  .footer small{color:#888;}
+
+  /* SUMMARY TABLE */
+  table.tracker{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px;}
+  table.tracker th,table.tracker td{border:1px solid var(--softline);padding:7px 6px;text-align:center;}
+  table.tracker th{background:var(--panel);color:var(--purple);}
+  table.tracker td.empty{height:30px;}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px;}
+  .stat{border:1.5px solid var(--softline);border-radius:8px;padding:10px;text-align:center;}
+  .stat b{display:block;font-size:20px;color:var(--teal);}
+  .stat small{color:#666;font-size:11px;text-transform:uppercase;letter-spacing:1px;}
+
+  .note{background:#fff7e6;border:1px solid #f0d98a;border-radius:8px;padding:10px 12px;font-size:12px;margin-top:10px;color:#6b5310;}
+
+  @media print{
+    body{background:#fff;}
+    .wrap{padding:0;max-width:none;}
+    .sheet{box-shadow:none;border:none;border-radius:0;page-break-after:always;margin:0;padding:18px 22px;}
+    .no-print{display:none;}
+  }
+  .printbtn{
+    position:fixed;bottom:20px;right:20px;z-index:99;
+    background:var(--purple);color:#fff;border:none;border-radius:30px;
+    padding:12px 20px;font-size:14px;cursor:pointer;box-shadow:0 4px 14px rgba(90,60,150,.4);
+  }
+</style>
+</head>
+<body>
+<button class="printbtn no-print" onclick="window.print()">🖨️ Print / Save PDF</button>
+
+<div class="wrap">
+
+  <!-- ============ COVER / INSTRUCTIONS ============ -->
+  <div class="sheet">
+    <div class="brand">
+      <div class="logo">NER<span>D</span>COMMAND</div>
+      <div class="tag">TRADING JOURNAL</div>
+    </div>
+    <h2>The Nerdcommand Trading Journal</h2>
+    <p class="sub">Log every trade. Win the long game. Print one trade page per real trade you open.</p>
+
+    <div class="rules">
+      <div class="rule"><b>2% Rule</b><small>Max risk/trade</small></div>
+      <div class="rule"><b>0.15–0.20</b><small>Sold-leg Delta</small></div>
+      <div class="rule"><b>50%</b><small>Take profit</small></div>
+      <div class="rule"><b>2× credit</b><small>Stop loss</small></div>
+      <div class="rule"><b>3 max</b><small>Open trades</small></div>
+    </div>
+
+    <div class="note">
+      <strong>How to use this journal:</strong> Print pages 2–3 (the trade log) as many times as you need — one page per trade.
+      Before you OPEN a trade, fill out the <em>Entry</em> section. Before you CLOSE, fill out the <em>Exit</em> section and the <em>Discipline</em> checklist.
+      At the end of each month, fill out the Summary Tracker (page 4) to measure your win rate and growth.
+    </div>
+
+    <div class="checklist" style="margin-top:14px;">
+      <div><span class="c"></span>Stock above 50-day MA?</div>
+      <div><span class="c"></span>Delta on sold leg ≤ 0.20?</div>
+      <div><span class="c"></span>Risk ≤ 2% of account?</div>
+      <div><span class="c"></span>Insurance leg (bought) in place?</div>
+      <div><span class="c"></span>No earnings this week?</div>
+      <div><span class="c"></span>Max 3 trades open?</div>
+    </div>
+
+    <div class="footer">
+      <small>NERDCOMMAND © 2026 — Educational use only. Not financial advice.</small>
+      <small>We don't gamble. We engineer income.</small>
+    </div>
+  </div>
+
+  <!-- ============ TRADE LOG PAGE (print many) ============ -->
+  <div class="sheet">
+    <div class="brand">
+      <div class="logo">NER<span>D</span>COMMAND</div>
+      <div class="tag">TRADE LOG</div>
+    </div>
+    <h2>Trade #______</h2>
+
+    <div class="section-title">ENTRY (fill before you open)</div>
+    <div class="grid">
+      <div class="field"><label>Date Opened</label><div class="line"></div></div>
+      <div class="field"><label>Ticker</label><div class="line"></div></div>
+      <div class="field"><label>Strategy</label><div class="line"></div></div>
+      <div class="field"><label>Account Size</label><div class="line"></div></div>
+
+      <div class="field"><label>Underlying Price</label><div class="line"></div></div>
+      <div class="field"><label>50-day MA (Above?)</label><div class="line"></div></div>
+      <div class="field"><label>Sold Strike</label><div class="line"></div></div>
+      <div class="field"><label>Sold Delta</label><div class="line"></div></div>
+
+      <div class="field"><label>Bought Strike (Insurance)</label><div class="line"></div></div>
+      <div class="field"><label>Spread Width</label><div class="line"></div></div>
+      <div class="field"><label>Contracts</label><div class="line"></div></div>
+      <div class="field"><label>Days to Exp.</label><div class="line"></div></div>
+
+      <div class="field"><label>Net Credit (collected)</label><div class="line"></div></div>
+      <div class="field"><label>Max Profit</label><div class="line"></div></div>
+      <div class="field"><label>Max Risk</label><div class="line"></div></div>
+      <div class="field"><label>POP %</label><div class="line"></div></div>
+
+      <div class="field"><label>2% Rule OK? (Risk vs $____)</label><div class="line"></div></div>
+      <div class="field"><label>Target Exit (50%)</label><div class="line"></div></div>
+      <div class="field"><label>Stop Loss (2× credit)</label><div class="line"></div></div>
+      <div class="field"><label>Planned Exit Date</label><div class="line"></div></div>
+
+      <div class="field full"><label>Why did I enter this trade? (the setup reason)</label><div class="bigbox"></div></div>
+    </div>
+
+    <div class="section-title">EXIT (fill when you close)</div>
+    <div class="grid">
+      <div class="field"><label>Date Closed</label><div class="line"></div></div>
+      <div class="field"><label>Exit Price (credit bought back)</label><div class="line"></div></div>
+      <div class="field"><label>Exit Reason</label><div class="line"></div></div>
+      <div class="field"><label>Result (Win/Loss)</label><div class="line"></div></div>
+    </div>
+    <div class="pnl-row">
+      <div class="field"><label>Profit / Loss ($)</label><div class="box"></div></div>
+      <div class="field"><label>% Return on Risk</label><div class="box"></div></div>
+      <div class="field"><label>New Account Balance</label><div class="box"></div></div>
+    </div>
+
+    <div class="section-title">DISCIPLINE CHECK</div>
+    <div class="checklist">
+      <div><span class="c"></span>Followed my entry rules exactly?</div>
+      <div><span class="c"></span>Took profit at ~50% (not greedy)?</div>
+      <div><span class="c"></span>Used my stop-loss if it failed?</div>
+      <div><span class="c"></span>No FOMO / revenge trade?</div>
+    </div>
+
+    <div class="field full" style="margin-top:12px;"><label>Lessons Learned / What would I do differently?</label><div class="bigbox"></div></div>
+
+    <div class="footer">
+      <small>NERDCOMMAND Trade Log</small>
+      <small>Page ___ of ___</small>
+    </div>
+  </div>
+
+  <!-- ============ SECOND TRADE PAGE (so one print = 2 logs) ============ -->
+  <div class="sheet">
+    <div class="brand">
+      <div class="logo">NER<span>D</span>COMMAND</div>
+      <div class="tag">TRADE LOG</div>
+    </div>
+    <h2>Trade #______</h2>
+
+    <div class="section-title">ENTRY (fill before you open)</div>
+    <div class="grid">
+      <div class="field"><label>Date Opened</label><div class="line"></div></div>
+      <div class="field"><label>Ticker</label><div class="line"></div></div>
+      <div class="field"><label>Strategy</label><div class="line"></div></div>
+      <div class="field"><label>Account Size</label><div class="line"></div></div>
+      <div class="field"><label>Underlying Price</label><div class="line"></div></div>
+      <div class="field"><label>50-day MA (Above?)</label><div class="line"></div></div>
+      <div class="field"><label>Sold Strike</label><div class="line"></div></div>
+      <div class="field"><label>Sold Delta</label><div class="line"></div></div>
+      <div class="field"><label>Bought Strike (Insurance)</label><div class="line"></div></div>
+      <div class="field"><label>Spread Width</label><div class="line"></div></div>
+      <div class="field"><label>Contracts</label><div class="line"></div></div>
+      <div class="field"><label>Days to Exp.</label><div class="line"></div></div>
+      <div class="field"><label>Net Credit (collected)</label><div class="line"></div></div>
+      <div class="field"><label>Max Profit</label><div class="line"></div></div>
+      <div class="field"><label>Max Risk</label><div class="line"></div></div>
+      <div class="field"><label>POP %</label><div class="line"></div></div>
+      <div class="field"><label>2% Rule OK? (Risk vs $____)</label><div class="line"></div></div>
+      <div class="field"><label>Target Exit (50%)</label><div class="line"></div></div>
+      <div class="field"><label>Stop Loss (2× credit)</label><div class="line"></div></div>
+      <div class="field"><label>Planned Exit Date</label><div class="line"></div></div>
+      <div class="field full"><label>Why did I enter this trade? (the setup reason)</label><div class="bigbox"></div></div>
+    </div>
+
+    <div class="section-title">EXIT (fill when you close)</div>
+    <div class="grid">
+      <div class="field"><label>Date Closed</label><div class="line"></div></div>
+      <div class="field"><label>Exit Price (credit bought back)</label><div class="line"></div></div>
+      <div class="field"><label>Exit Reason</label><div class="line"></div></div>
+      <div class="field"><label>Result (Win/Loss)</label><div class="line"></div></div>
+    </div>
+    <div class="pnl-row">
+      <div class="field"><label>Profit / Loss ($)</label><div class="box"></div></div>
+      <div class="field"><label>% Return on Risk</label><div class="box"></div></div>
+      <div class="field"><label>New Account Balance</label><div class="box"></div></div>
+    </div>
+
+    <div class="section-title">DISCIPLINE CHECK</div>
+    <div class="checklist">
+      <div><span class="c"></span>Followed my entry rules exactly?</div>
+      <div><span class="c"></span>Took profit at ~50% (not greedy)?</div>
+      <div><span class="c"></span>Used my stop-loss if it failed?</div>
+      <div><span class="c"></span>No FOMO / revenge trade?</div>
+    </div>
+
+    <div class="field full" style="margin-top:12px;"><label>Lessons Learned / What would I do differently?</label><div class="bigbox"></div></div>
+
+    <div class="footer">
+      <small>NERDCOMMAND Trade Log</small>
+      <small>Page ___ of ___</small>
+    </div>
+  </div>
+
+  <!-- ============ MONTHLY SUMMARY TRACKER ============ -->
+  <div class="sheet">
+    <div class="brand">
+      <div class="logo">NER<span>D</span>COMMAND</div>
+      <div class="tag">MONTHLY SUMMARY</div>
+    </div>
+    <h2>Month: ______________ &nbsp; 20____</h2>
+
+    <div class="stats">
+      <div class="stat"><b>____</b><small>Trades</small></div>
+      <div class="stat"><b>____%</b><small>Win Rate</small></div>
+      <div class="stat"><b>$____</b><small>Net P&L</small></div>
+      <div class="stat"><b>____%</b><small>Account Growth</small></div>
+    </div>
+
+    <div class="section-title">TRADE TRACKER</div>
+    <table class="tracker">
+      <tr>
+        <th>#</th><th>Date</th><th>Ticker</th><th>Strategy</th><th>Credit</th><th>Max Risk</th><th>Result</th><th>P&amp;L</th><th>Discipline? ✓/✗</th>
+      </tr>
+      <tr><td>1</td><td class="empty"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>2</td><td class="empty"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>3</td><td class="empty"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>4</td><td class="empty"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>5</td><td class="empty"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>6</td><td class="empty"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>7</td><td class="empty"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>8</td><td class="empty"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>9</td><td class="empty"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>10</td><td class="empty"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+
+    <div class="section-title">MONTH-END REVIEW</div>
+    <div class="field full" style="margin-top:8px;"><label>What did I do well this month?</label><div class="bigbox"></div></div>
+    <div class="field full" style="margin-top:8px;"><label>What cost me money? (be honest)</label><div class="bigbox"></div></div>
+    <div class="field full" style="margin-top:8px;"><label>One rule I will focus on next month:</label><div class="bigbox"></div></div>
+
+    <div class="note" style="margin-top:12px;">
+      <strong>Checkpoint:</strong> If win rate is below 70% OR account is down 15%, go back to paper trading for 2 weeks and review this journal with a mentor. The journal never lies — trust it.
+    </div>
+
+    <div class="footer">
+      <small>NERDCOMMAND Monthly Summary</small>
+      <small>Start $______  →  End $______</small>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

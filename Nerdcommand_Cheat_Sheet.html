@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NERDCOMMAND Cheat Sheet</title>
+<style>
+  @page{size:letter;margin:0.35in;}
+  :root{
+    --bg:#0a0612;--ink:#f4f1ff;--muted:#b9b0d6;
+    --purple:#9b5cff;--teal:#2ee6c8;--gold:#ffcc4d;--red:#ff5c7a;--green:#3fe08a;
+    --panel:#160f28;--line:#2c2347;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:11px;line-height:1.35;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  .page{padding:14px;}
+  .head{
+    display:flex;justify-content:space-between;align-items:center;
+    border-bottom:2px solid var(--purple);padding-bottom:6px;margin-bottom:8px;
+  }
+  .head .logo{font-size:20px;font-weight:bold;letter-spacing:2px;}
+  .head .logo span{color:var(--gold);}
+  .head .tag{color:var(--teal);font-size:10px;letter-spacing:1px;}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:8px;}
+  .grid.two{grid-template-columns:1fr 1fr;}
+  .grid.four{grid-template-columns:repeat(4,1fr);}
+
+  .card{
+    border:1px solid var(--line);border-radius:7px;padding:7px 9px;background:var(--panel);
+  }
+  .card h3{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:5px;}
+  .card h3 .ic{margin-right:4px;}
+  .t h3{color:var(--teal);border-bottom:1px solid var(--line);padding-bottom:3px;}
+  .g h3{color:var(--purple);}
+  .e h3{color:var(--gold);}
+  .r h3{color:var(--red);}
+  .x h3{color:var(--green);}
+
+  .ticker{font-size:15px;font-weight:bold;color:var(--gold);}
+  .ticker small{display:block;font-size:10px;color:var(--muted);font-weight:normal;}
+  ul{list-style:none;}
+  ul.tick li{padding-left:13px;position:relative;margin:2px 0;}
+  ul.tick li:before{content:"▸";position:absolute;left:0;color:var(--teal);}
+  ul.dot li{padding-left:11px;position:relative;margin:2px 0;}
+  ul.dot li:before{content:"●";position:absolute;left:0;color:var(--gold);font-size:7px;top:3px;}
+  b.k{color:var(--teal);}
+  b.g{color:var(--gold);}
+  b.r{color:var(--red);}
+
+  .strip{
+    border:1px solid var(--line);border-radius:7px;background:linear-gradient(90deg,#241638,#1a1028);
+    padding:7px 10px;margin-bottom:8px;
+  }
+  .strip h3{color:var(--red);font-size:10px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;}
+  .rules{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;}
+  .rules div{font-size:9.5px;}
+  .rules b{display:block;color:var(--gold);font-size:11px;}
+
+  .steps{counter-reset:s;list-style:none;}
+  .steps li{padding-left:20px;position:relative;margin:3px 0;}
+  .steps li:before{
+    counter-increment:s;content:counter(s);
+    position:absolute;left:0;top:0;
+    width:14px;height:14px;border-radius:50%;
+    background:var(--gold);color:#0a0612;font-weight:bold;font-size:9px;
+    text-align:center;line-height:14px;
+  }
+
+  .plan{border:1px solid var(--line);border-radius:7px;padding:7px 9px;background:var(--panel);}
+  .plan.teal{border-left:3px solid var(--teal);}
+  .plan.gold{border-left:3px solid var(--gold);}
+  .plan h3{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;color:var(--teal);}
+  .plan.gold h3{color:var(--gold);}
+  .plan .amt{font-size:14px;font-weight:bold;}
+
+  .foot{
+    margin-top:8px;border-top:1px solid var(--line);padding-top:6px;
+    display:flex;justify-content:space-between;color:var(--muted);font-size:9px;
+  }
+  .foot b{color:var(--teal);}
+  .mini{font-size:9.5px;color:var(--muted);}
+  .green-dot{color:var(--green);}
+  .printbtn{
+    position:fixed;bottom:16px;right:16px;z-index:99;
+    background:var(--purple);color:#fff;border:none;border-radius:24px;
+    padding:10px 16px;font-size:13px;cursor:pointer;
+  }
+  @media print{.printbtn{display:none;}body{background:#0a0612;}}
+</style>
+</head>
+<body>
+<button class="printbtn" onclick="window.print()">🖨️ Print</button>
+
+<div class="page">
+
+  <div class="head">
+    <div class="logo">NER<span>D</span>COMMAND</div>
+    <div class="tag">CREDIT SPREAD CHEAT SHEET · ONE-PAGE QUICK REFERENCE</div>
+  </div>
+
+  <!-- THE BIG THREE -->
+  <div class="grid">
+    <div class="card t">
+      <div class="ticker">SPX <small>S&amp;P 500 Index</small></div>
+      <ul class="tick">
+        <li>0DTE / 1–2 day spreads</li>
+        <li>Quick income, no single-stock risk</li>
+        <li><b class="k">Larger accounts only</b></li>
+      </ul>
+    </div>
+    <div class="card t">
+      <div class="ticker">SOFI <small>SoFi Technologies</small></div>
+      <ul class="tick">
+        <li><b class="k">Bull Put Spread</b> (monthly)</li>
+        <li>Sell at $6 / $7 support floors</li>
+        <li><b class="k">Best for $500–$2,000</b></li>
+      </ul>
+    </div>
+    <div class="card t">
+      <div class="ticker">MSFT <small>Microsoft</small></div>
+      <ul class="tick">
+        <li><b class="k">Bear Call Spread</b> (weekly)</li>
+        <li>Only when <b>overbought</b></li>
+        <li>Steady, high implied vol</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- GREEDS + ENTRY CHECK -->
+  <div class="grid two">
+    <div class="card g">
+      <h3><span class="ic">🧭</span>THE GREEN LIGHTS (ENTRY CHECK)</h3>
+      <ul class="tick">
+        <li>Stock <b class="k">above 50-day MA</b></li>
+        <li>Sold-leg <b class="g">Delta ≤ 0.20</b> (target 0.15)</li>
+        <li>POP <b class="g">70–80%</b></li>
+        <li>Theta positive (you earn daily)</li>
+        <li>No earnings this week</li>
+        <li>Risk ≤ 2% of account</li>
+      </ul>
+    </div>
+    <div class="card g">
+      <h3><span class="ic">⚔️</span>EXECUTION (OPEN THE SPREAD)</h3>
+      <ol class="steps">
+        <li><b class="k">Sell to Open</b> the lower strike (Delta ~0.15) → collect premium</li>
+        <li><b class="k">Buy to Open</b> a strike $0.50 below → your insurance (caps loss)</li>
+        <li>Net = Credit − Insurance cost = <b class="g">money in today</b></li>
+        <li>If price stays out of danger → you keep the full credit</li>
+      </ol>
+      <div class="mini" style="margin-top:4px;"><b class="g">SOFI EX:</b> Stock $8 → Sell $7 Put (Δ.15) / Buy $6.50 Put. Credit ≈ $20, Max risk ≈ $30, ~40% return if it holds.</div>
+    </div>
+  </div>
+
+  <!-- EXIT RULES -->
+  <div class="grid two">
+    <div class="card x">
+      <h3><span class="ic">✅</span>EXIT RULES — WHEN TO LEAVE</h3>
+      <ul class="tick">
+        <li><b class="g">Take profit at 50%</b> of max profit → close &amp; redeploy</li>
+        <li><b class="r">Cut loss at 2× credit</b> (collected $20 → out at −$40)</li>
+        <li>At <b class="k">21 days to exp.</b> → watch close; Gamma risk rises</li>
+        <li>Never hold through <b class="r">earnings</b></li>
+        <li>Feeling greedy or panicked? <b class="r">Step away.</b></li>
+      </ul>
+    </div>
+    <div class="card e">
+      <h3><span class="ic">🧠</span>MINDSET TRAPS TO AVOID</h3>
+      <ul class="dot">
+        <li><b class="r">FOMO</b> — chasing a flying stock. Wait for your setup.</li>
+        <li><b class="r">Revenge trade</b> — forcing a trade after a loss.</li>
+        <li><b class="r">Overconfidence</b> — 5 wins ≠ genius. Keep risk flat.</li>
+        <li><b class="r">Hope</b> — "it'll come back." If it hits stop, CLOSE.</li>
+      </ul>
+      <div class="mini" style="margin-top:4px;"><b>System 2 over System 1:</b> follow the written plan like a robot.</div>
+    </div>
+  </div>
+
+  <!-- RISK STRIP -->
+  <div class="strip">
+    <h3><span class="ic">🛡️</span>RISK RULES — PROTECT THE CAPITAL (NON-NEGOTIABLE)</h3>
+    <div class="rules">
+      <div><b>2% Rule</b>Max risk/trade<br><span class="mini">$500→$10 · $1k→$20</span></div>
+      <div><b>3 Max</b>Open trades at once (1 per ticker)</div>
+      <div><b>Always Insure</b>Never sell naked — buy the protection leg</div>
+      <div><b>No Earnings</b>Close before any earnings report</div>
+      <div><b>Keep 30% Cash</b>Cash = oxygen for new trades</div>
+    </div>
+  </div>
+
+  <!-- PERSONAL PLANS -->
+  <div class="grid two">
+    <div class="plan teal">
+      <h3>YOUR PLAN · $500 STARTER (TRAINEE)</h3>
+      <div class="amt">$10 max risk · 1 trade at a time</div>
+      <ul class="dot" style="margin-top:4px;">
+        <li>Open broker + <b class="k">paper trade 2 wks</b> before deposit</li>
+        <li>Deposit $500 · keep <b class="k">$350 cash</b></li>
+        <li>1 SOFI Bull Put/wk, Δ.15, ≤$0.50 wide</li>
+        <li>2 losses in a row → <b class="r">stop 1 week</b></li>
+        <li>Reinvest all profit · target $500→$600 / 3 mo</li>
+      </ul>
+    </div>
+    <div class="plan gold">
+      <h3>YOUR PLAN · $1,000 PORTFOLIO (OPERATOR)</h3>
+      <div class="amt">$20 max risk · 2 tickers running</div>
+      <ul class="dot" style="margin-top:4px;">
+        <li>Split: <b class="g">$600 cash / $250 SOFI / $150 MSFT</b></li>
+        <li>SOFI: 1 monthly Bull Put (30–45 DTE)</li>
+        <li>MSFT: 1 weekly Bear Call (overbought only)</li>
+        <li>3 losses → stop 1 wk · below $850 → paper 2 wks</li>
+        <li>Reinvest all · target 4–6%/mo → $1k→$1.25k</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div>NERDCOMMAND © 2026 · <b>We don't gamble. We engineer income.</b></div>
+    <div>Educational only — not financial advice · Always do your own research</div>
+  </div>
+
+</div>
+</body>
+</html>

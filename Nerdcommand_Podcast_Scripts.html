@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NERDCOMMAND Podcast — 25 Avatar Scripts</title>
+<style>
+  :root{
+    --bg:#0a0612;--ink:#f4f1ff;--muted:#b9b0d6;
+    --purple:#9b5cff;--teal:#2ee6c8;--gold:#ffcc4d;--red:#ff5c7a;--green:#3fe08a;
+    --panel:#150f24;--panel2:#1d1533;--line:#2c2347;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Helvetica,Arial,sans-serif;font-size:17px;line-height:1.6;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px;}
+  .top{
+    text-align:center;padding:40px 20px 30px;
+    background:linear-gradient(180deg,#1a1030 0%,#0a0612 100%);
+    border-bottom:1px solid var(--line);
+  }
+  .top h1{font-size:34px;margin:0;letter-spacing:1px;background:linear-gradient(90deg,var(--teal),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .top .sub{color:var(--muted);margin-top:6px;letter-spacing:1px;}
+  .badge{display:inline-block;margin-top:14px;padding:7px 16px;border:1px solid var(--purple);border-radius:999px;color:var(--teal);font-size:13px;letter-spacing:1px;}
+  .intro{
+    background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--purple);
+    border-radius:12px;padding:16px 20px;margin:24px 0;
+  }
+  .intro h3{color:var(--gold);margin:0 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:1.5px;}
+  .intro ul{margin:6px 0;padding-left:20px;color:var(--muted);font-size:15px;}
+  .intro li{margin:4px 0;}
+  .intro b{color:var(--ink);}
+  .script{
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:18px 22px;margin:18px 0;
+  }
+  .script .hd{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:10px;}
+  .script .num{color:var(--gold);font-family:"Courier New",monospace;font-size:13px;letter-spacing:2px;}
+  .script .title{color:var(--ink);font-size:19px;font-weight:bold;}
+  .script .meta{color:var(--teal);font-size:13px;}
+  .visual{
+    background:var(--panel2);border:1px dashed var(--purple);border-radius:8px;
+    padding:8px 12px;margin-bottom:12px;font-size:14px;color:var(--muted);
+  }
+  .visual b{color:var(--teal);}
+  .spoken{
+    font-size:19px;line-height:1.7;color:var(--ink);
+    border-left:3px solid var(--gold);padding-left:16px;
+  }
+  .spoken:before{content:"🎙️ ";font-size:15px;}
+  .spoken strong{color:var(--gold);}
+  .printbtn{
+    position:fixed;bottom:20px;right:20px;z-index:99;
+    background:var(--purple);color:#fff;border:none;border-radius:30px;
+    padding:12px 20px;font-size:14px;cursor:pointer;
+  }
+  .toc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 22px;margin:18px 0;}
+  .toc h3{color:var(--teal);margin:0 0 8px;font-size:14px;letter-spacing:1px;text-transform:uppercase;}
+  .toc ol{margin:0;padding-left:22px;color:var(--muted);font-size:14px;columns:2;}
+  .toc li{margin:3px 0;break-inside:avoid;}
+  .footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 0 50px;border-top:1px solid var(--line);margin-top:30px;}
+  @media print{.printbtn{display:none;}.top{background:#0a0612;}}
+</style>
+</head>
+<body>
+<button class="printbtn" onclick="window.print()">🖨️ Print / Save PDF</button>
+
+<div class="top">
+  <h1>NERDCOMMAND PODCAST</h1>
+  <div class="sub">25 AVATAR SCRIPTS · ~20 SECONDS EACH</div>
+  <div class="badge">The Urban Trader's Guide to Credit Spreads</div>
+</div>
+
+<div class="wrap">
+
+<div class="intro">
+  <h3>How To Use These Scripts</h3>
+  <ul>
+    <li>Each script runs <b>~20 seconds</b> at a confident podcast pace (≈48–52 words). Read smooth, not rushed.</li>
+    <li><b>Visual cue</b> = the image from the book to show on-screen behind the avatar for that clip.</li>
+    <li>Drop the spoken line into your avatar tool. The cues are for your editor / b-roll.</li>
+    <li>Post one a day for a <b>25-day content series</b>, or stack 3–4 into a longer episode.</li>
+    <li>Voice tip: confident, calm, "I'm giving you the cheat code" energy.</li>
+  </ul>
+</div>
+
+<div class="toc">
+  <h3>The 25-Episode Series</h3>
+  <ol>
+    <li>Welcome to the Collective</li>
+    <li>The Small-Account Promise</li>
+    <li>What's Inside the Book</li>
+    <li>The Greeks Street Map</li>
+    <li>Delta = Your Shield</li>
+    <li>Theta = Your Clock</li>
+    <li>The Theta Hourglass</li>
+    <li>You Are the House</li>
+    <li>The Big Three Tickers</li>
+    <li>SPX — The Stable One</li>
+    <li>SOFI — The Small-Account King</li>
+    <li>The Credit Spread Fortress</li>
+    <li>MSFT — The Steady Giant</li>
+    <li>The MSFT Profit Bracket</li>
+    <li>Step-by-Step Execution</li>
+    <li>A Real SOFI Trade</li>
+    <li>The 2% Rule</li>
+    <li>Take Profit at 50%</li>
+    <li>Cut the Loss Early</li>
+    <li>Beat Your Own Brain</li>
+    <li>The $500 Starter Plan</li>
+    <li>The $1,000 Portfolio</li>
+    <li>The Growth Staircase</li>
+    <li>The One-Page Cheat Sheet</li>
+    <li>The Journal + Your Move</li>
+  </ol>
+</div>
+
+<!-- 1 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 01</span> · <span class="title">Welcome to the Collective</span></span><span class="meta">~50 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Book cover image — the cyberpunk rooftop trader + NERDCOMMAND logo.</div>
+  <p class="spoken">"What's good, this is Nerdcommand. Welcome to the Collective. We don't gamble out here — we engineer income. I built a full book showing you how to trade credit spreads the safe way. Real setups, real numbers, real discipline. Trying to grow a small account? You're in the right place. Let's level up."</p>
+</div>
+
+<!-- 2 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 02</span> · <span class="title">The Small-Account Promise</span></span><span class="meta">~52 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> "Welcome to the Collective" rooftop image.</div>
+  <p class="spoken">"Everybody thinks you need big money to trade. That's a lie. This book is built for the beginner with five hundred bucks. I'ma show you how to stretch a small account, trade like the house, and stay in the game long enough to win. Slow, stable, consistent. That's the Nerdcommand way."</p>
+</div>
+
+<!-- 3 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 03</span> · <span class="title">What's Inside the Book</span></span><span class="meta">~52 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Book table-of-contents page (pull from the guide HTML).</div>
+  <p class="spoken">"Here's what's inside the guide. Ten chapters, broken down simple. We cover the Greeks, the three tickers I trade, step-by-step execution, exit strategy, risk rules, and trading psychology. Plus two personal money plans — one for five hundred, one for a thousand. Read it twice, do the quizzes, and your whole game changes."</p>
+</div>
+
+<!-- 4 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 04</span> · <span class="title">The Greeks Street Map</span></span><span class="meta">~52 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> The "Greeks Street Map" graphic — neon street, Delta shield, Theta hourglass.</div>
+  <p class="spoken">"Check this graphic right here — the Greeks street map. Trading without the Greeks is like driving blind. Delta is your shield, we keep it low. Theta is your clock, it pays you daily. I show you exactly how to read both, so price moves safe inside the lane every single time."</p>
+</div>
+
+<!-- 5 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 05</span> · <span class="title">Delta = Your Shield</span></span><span class="meta">~51 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Zoom on the green "Delta 0.15" shield from the street-map image.</div>
+  <p class="spoken">"Let's talk Delta. Delta is directional risk. When we sell an option, we want a Delta of point-two-oh or lower. That means the stock has about an eighty percent chance of staying out of our danger zone. Low Delta equals a thick shield. That's how we sleep good at night, trust."</p>
+</div>
+
+<!-- 6 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 06</span> · <span class="title">Theta = Your Clock</span></span><span class="meta">~48 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Theta hourglass graphic, gold coins flowing out.</div>
+  <p class="spoken">"Theta is your best friend. Every single day that passes, the option you sold loses value. That's profit in your pocket. The gambler pays you for time — you're the house now. Time always runs out, so time always pays you. That's the whole secret to this game."</p>
+</div>
+
+<!-- 7 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 07</span> · <span class="title">The Theta Hourglass</span></span><span class="meta">~50 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Full Theta hourglass image, slow zoom in on the falling coins.</div>
+  <p class="spoken">"Look at this hourglass. Gold coins dropping as the sand falls — that's Theta in real life. You sold the option, now the clock works for you, not against you. Every tick drops money into your account. We don't chase moves. We let time do the heavy lifting. That's Nerdcommand."</p>
+</div>
+
+<!-- 8 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 08</span> · <span class="title">You Are the House</span></span><span class="meta">~50 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Risk-shield graphic (gold coins behind a teal energy shield).</div>
+  <p class="spoken">"Repeat after me: I am the house, not the gambler. The gambler hopes. The house uses math. We only take high-probability setups — seventy to eighty percent chance of winning. We don't care if the stock goes up, down, or sideways, as long as it stays out the danger zone."</p>
+</div>
+
+<!-- 9 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 09</span> · <span class="title">The Big Three Tickers</span></span><span class="meta">~50 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Cover image or a 3-card title card reading "SPX · SOFI · MSFT".</div>
+  <p class="spoken">"I don't chase every stock. I stick to three — SPX, SOFI, and MSFT. Knowing a few tickers deep is safer than knowing many a little. Watch the same three every day and you start feeling the moves before they happen. Focus beats chaos every time. These are my streets."</p>
+</div>
+
+<!-- 10 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 10</span> · <span class="title">SPX — The Stable One</span></span><span class="meta">~48 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Greeks street-map "SPX Highway" lane, or book SPX section card.</div>
+  <p class="spoken">"First ticker: SPX, the S&P 500. No single-stock risk because it holds five hundred companies — one bad apple can't sink the basket. It's the most stable environment out there. For quick income, I run short spreads. But SPX is for bigger accounts. Earn your way up to it."</p>
+</div>
+
+<!-- 11 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 11</span> · <span class="title">SOFI — The Small-Account King</span></span><span class="meta">~48 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Credit-spread fortress image labeled "SOFI".</div>
+  <p class="spoken">"Second ticker: SOFI. This is the favorite for small accounts — five hundred to two thousand bucks. High volume, predictable price floors. I run monthly Bull Put Spreads right at the six or seven dollar support. If you're starting small, SOFI is exactly where you learn the game."</p>
+</div>
+
+<!-- 12 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 12</span> · <span class="title">The Credit Spread Fortress</span></span><span class="meta">~49 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Full credit-spread fortress cutaway (inner wall = sold strike, moat = bought strike).</div>
+  <p class="spoken">"Check this fortress. The inner wall is the strike you sold. The outer moat is the strike you bought for insurance. Market volatility just bounces off the moat, while inside, your premium piles up like gold. That's a credit spread — protected on both sides. Safe and stacked."</p>
+</div>
+
+<!-- 13 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 13</span> · <span class="title">MSFT — The Steady Giant</span></span><span class="meta">~49 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> MSFT safety-bracket chart image.</div>
+  <p class="spoken">"Third ticker: Microsoft. Consistent growth, high implied volatility, but it rarely makes wild moves. When MSFT runs up too fast and gets overbought, I sell Bear Call spreads on the weekly. Patience here is a position — if it's not overbought, I just skip the week."</p>
+</div>
+
+<!-- 14 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 14</span> · <span class="title">The MSFT Profit Bracket</span></span><span class="meta">~48 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> MSFT bracket chart zoom — "Profit Zone" + "Statistical Edge: 82%".</div>
+  <p class="spoken">"Look at this chart. Two glass brackets clamp the price line. Everything inside that blue zone is your profit zone. As long as MSFT stays in the bracket, you win. Floating right there: statistical edge, eighty-two percent. That's not luck — that's math doing the work for you."</p>
+</div>
+
+<!-- 15 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 15</span> · <span class="title">Step-by-Step Execution</span></span><span class="meta">~49 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Greeks street-map with "green light" glow, or book step-cards.</div>
+  <p class="spoken">"Now the moves. Step one: find the floor. Make sure the stock's above its fifty-day average — that's your green light. Step two: check the Greeks — Delta around point-one-five, Theta positive. Step three: open the spread. Follow these like a recipe and don't skip a single step."</p>
+</div>
+
+<!-- 16 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 16</span> · <span class="title">A Real SOFI Trade</span></span><span class="meta">~50 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Credit-spread fortress + on-screen numbers ($8 / Sell $7 / Buy $6.50 / Credit $20).</div>
+  <p class="spoken">"Real example. SOFI's at eight dollars. You sell the seven put, collect about forty bucks. You buy the six-fifty put for insurance, pay twenty. Net credit, twenty dollars. If SOFI stays above seven, you keep all twenty. Forty percent return on your risk. That's how the math pays."</p>
+</div>
+
+<!-- 17 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 17</span> · <span class="title">The 2% Rule</span></span><span class="meta">~49 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Risk-shield graphic with "2%" badge overlay.</div>
+  <p class="spoken">"Nerdcommand rule number one: never risk more than two percent on a single trade. Five-hundred-dollar account? Your max risk is ten bucks. That's how you survive a bad streak to reach the good one. One trade can never take you out. Protect the capital at all times."</p>
+</div>
+
+<!-- 18 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 18</span> · <span class="title">Take Profit at 50%</span></span><span class="meta">~49 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Exit-strategy image — green "Take Profit 50%" sign.</div>
+  <p class="spoken">"Knowing when to leave is just as important as knowing when to enter. Here's the rule: take profit at fifty percent. You collected twenty? Buy it back at ten, keep the rest, walk away. The last bit crawls and adds risk. Take the sure win and redeploy the money."</p>
+</div>
+
+<!-- 19 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 19</span> · <span class="title">Cut the Loss Early</span></span><span class="meta">~51 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Exit-strategy image — amber "Cut Loss" sign.</div>
+  <p class="spoken">"And here's the hard rule: cut your loss at two times your credit. Collected twenty? Close it when you're down forty. Don't hope. Don't wait for it to come back. Hoping is how small accounts die. The math doesn't care about your feelings. Hit the line, close the trade."</p>
+</div>
+
+<!-- 20 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 20</span> · <span class="title">Beat Your Own Brain</span></span><span class="meta">~50 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Risk-shield or welcome image; overlay text "FOMO · REVENGE · GREED · HOPE".</div>
+  <p class="spoken">"Your biggest opponent isn't the market — it's your own brain. FOMO makes you chase. Revenge makes you force trades. Overconfidence makes you size up. Hope makes you hold losers. Beat all four with one thing: a written plan you follow like a robot. System two over system one."</p>
+</div>
+
+<!-- 21 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 21</span> · <span class="title">The $500 Starter Plan</span></span><span class="meta">~50 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Growth-staircase image, lowest step "$500" highlighted.</div>
+  <p class="spoken">"Here's your plan for five hundred bucks. Step one: open a broker with paper trading and practice two weeks first. Step two: deposit, keep three-fifty in cash. Step three: one SOFI trade a week, ten-dollar max risk. Two losses in a row, stop for a week. Slow wins."</p>
+</div>
+
+<!-- 22 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 22</span> · <span class="title">The $1,000 Portfolio</span></span><span class="meta">~51 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Growth-staircase image, "$1,000" step highlighted.</div>
+  <p class="spoken">"Now the thousand-dollar portfolio. Split it: six hundred cash reserve, two-fifty for the SOFI engine, one-fifty for the MSFT engine. Max risk, twenty bucks a trade. Target four to six percent a month on your working money, reinvest everything. Watch compounding turn a small account into a real one."</p>
+</div>
+
+<!-- 23 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 23</span> · <span class="title">The Growth Staircase</span></span><span class="meta">~49 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Full growth-staircase image climbing $500 → $5,000.</div>
+  <p class="spoken">"Look at this staircase. Five hundred, a thousand, twenty-five hundred, five thousand — each step is a level up. Don't skip steps. You grow a small account slow on purpose, because slow is safe, and safe keeps you in the game. In the game, compounding does the rest."</p>
+</div>
+
+<!-- 24 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 24</span> · <span class="title">The One-Page Cheat Sheet</span></span><span class="meta">~50 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> The full cheat-sheet PDF displayed on screen.</div>
+  <p class="spoken">"I also made you a one-page cheat sheet. Every rule on one page — the three tickers, the Delta target, the exit rules, the risk caps, both money plans. Print it. Tape it next to your screen. Before you open any trade, your eyes hit that sheet first. Facts only."</p>
+</div>
+
+<!-- 25 -->
+<div class="script">
+  <div class="hd"><span><span class="num">EP 25</span> · <span class="title">The Journal + Your Move</span></span><span class="meta">~50 words · 20s</span></div>
+  <div class="visual">📺 <b>ON-SCREEN:</b> Trading-journal PDF pages, then cut to cover image.</div>
+  <p class="spoken">"Last piece: the trading journal. Log every trade — entry, exit, profit, lesson. The journal never lies. Win rate, growth, mistakes — it's all there. So get the book, print the cheat sheet, grab the journal, and start paper trading today. Welcome to the Collective. We engineer income."</p>
+</div>
+
+<div class="footer">
+  <p>NERDCOMMAND PODCAST · 25 AVATAR SCRIPTS</p>
+  <p>We don't gamble. We engineer income.</p>
+  <p style="font-size:11px;color:#6f6790;margin-top:8px;">Educational content only — not financial advice.</p>
+</div>
+
+</div>
+</body>
+</html>

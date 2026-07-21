@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NERDCOMMAND: The Urban Trader's Guide to Credit Spreads</title>
+<style>
+  :root{
+    --bg:#0a0612;
+    --panel:#150f24;
+    --panel2:#1d1533;
+    --ink:#f4f1ff;
+    --muted:#b9b0d6;
+    --purple:#9b5cff;
+    --teal:#2ee6c8;
+    --gold:#ffcc4d;
+    --red:#ff5c7a;
+    --green:#3fe08a;
+    --line:#2c2347;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Segoe UI",Helvetica,Arial,sans-serif;
+    line-height:1.7;
+    font-size:18px;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px;}
+
+  /* COVER */
+  .cover{
+    position:relative;
+    text-align:center;
+    padding:40px 20px 50px;
+    background:linear-gradient(180deg,#1a1030 0%,#0a0612 100%);
+  }
+  .cover img{width:100%;max-width:780px;border-radius:16px;border:1px solid var(--line);box-shadow:0 0 60px rgba(155,92,255,.25);}
+  .cover h1{
+    font-size:42px;margin:24px 0 6px;letter-spacing:2px;
+    background:linear-gradient(90deg,var(--teal),var(--gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .cover .sub{color:var(--muted);font-size:18px;letter-spacing:1px;}
+  .cover .badge{display:inline-block;margin-top:14px;padding:8px 16px;border:1px solid var(--purple);border-radius:999px;color:var(--teal);font-size:13px;letter-spacing:1px;}
+
+  /* SECTION HEADERS */
+  header.chap{
+    border-top:2px solid var(--line);
+    padding:46px 0 10px;
+  }
+  h2{
+    font-size:30px;margin:0 0 6px;color:var(--ink);
+  }
+  h2 .num{
+    color:var(--gold);font-family:"Courier New",monospace;font-size:18px;display:block;letter-spacing:3px;margin-bottom:4px;
+  }
+  h3{color:var(--teal);font-size:21px;margin:28px 0 8px;}
+  p{margin:12px 0;}
+  .lead{color:var(--muted);font-size:19px;}
+
+  /* CALLOUT BOXES */
+  .box{
+    border:1px solid var(--line);
+    background:var(--panel);
+    border-radius:14px;
+    padding:18px 20px;
+    margin:20px 0;
+    border-left:4px solid var(--teal);
+  }
+  .box.tip{border-left-color:var(--gold);}
+  .box.warn{border-left-color:var(--red);}
+  .box.science{border-left-color:var(--purple);}
+  .box .tag{
+    font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);font-weight:bold;display:block;margin-bottom:6px;
+  }
+  .box.tip .tag{color:var(--gold);}
+  .box.warn .tag{color:var(--red);}
+  .box.science .tag{color:var(--purple);}
+  .box ul{margin:8px 0;padding-left:20px;}
+  .box li{margin:6px 0;}
+
+  /* IMAGES */
+  figure{margin:26px 0;text-align:center;}
+  figure img{width:100%;border-radius:14px;border:1px solid var(--line);}
+  figcaption{color:var(--muted);font-size:14px;margin-top:8px;font-style:italic;}
+
+  /* TABLE */
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:16px;}
+  th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;}
+  th{background:var(--panel2);color:var(--teal);}
+  tr:nth-child(even) td{background:var(--panel);}
+
+  /* STEP CARDS */
+  .step{
+    display:flex;gap:16px;align-items:flex-start;
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:14px 0;
+  }
+  .step .n{
+    flex:0 0 44px;height:44px;border-radius:50%;
+    background:linear-gradient(135deg,var(--purple),var(--teal));
+    color:#0a0612;font-weight:bold;font-size:20px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .step h4{margin:0 0 4px;color:var(--gold);font-size:18px;}
+  .step p{margin:4px 0;}
+
+  /* QUIZ */
+  .quiz{background:var(--panel2);border:1px dashed var(--purple);border-radius:14px;padding:18px 20px;margin:24px 0;}
+  .quiz h4{margin:0 0 10px;color:var(--gold);}
+  .quiz .q{margin:10px 0;}
+  .quiz .q .ans{color:var(--muted);font-size:15px;margin-top:4px;font-style:italic;}
+
+  /* PLAN */
+  .plan{border:2px solid var(--teal);border-radius:16px;padding:20px;margin:20px 0;background:linear-gradient(180deg,#11243a,#0c1322);}
+  .plan.gold{border-color:var(--gold);background:linear-gradient(180deg,#2a2110,#160f06);}
+  .plan h3{margin-top:0;}
+
+  code{background:#000;color:var(--teal);padding:2px 6px;border-radius:5px;font-size:15px;}
+  .term{color:var(--gold);font-weight:bold;}
+
+  .footer{text-align:center;color:var(--muted);font-size:13px;padding:40px 0 60px;border-top:1px solid var(--line);margin-top:40px;}
+  strong.k{color:var(--teal);}
+  .nowrap{white-space:nowrap;}
+
+  .disclaimer{
+    background:#1a0e0e;border:1px solid #5c2020;border-radius:12px;padding:16px;margin:24px 0;font-size:14px;color:#e8b8b8;
+  }
+  .toc{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 24px;margin:20px 0;}
+  .toc ol{margin:6px 0;padding-left:22px;}
+  .toc li{margin:6px 0;color:var(--muted);}
+  .toc a{color:var(--teal);text-decoration:none;}
+  .toc a:hover{text-decoration:underline;}
+
+  hr.soft{border:none;border-top:1px solid var(--line);margin:36px 0;}
+  .center{text-align:center;}
+</style>
+</head>
+<body>
+
+<!-- ===================== COVER ===================== -->
+<section class="cover">
+  <div class="wrap">
+    <img src="images/cover.png" alt="Nerdcommand book cover">
+    <h1>NERDCOMMAND</h1>
+    <div class="sub">THE URBAN TRADER'S GUIDE TO CREDIT SPREADS</div>
+    <div class="sub" style="color:var(--gold);margin-top:8px;">Level Up Your Portfolio: Safe, Stable, and Consistent</div>
+    <div class="badge">A NERDCOMMAND DIGITAL PRODUCT</div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<!-- ===================== WELCOME ===================== -->
+<header class="chap">
+  <h2><span class="num">// WELCOME</span>Welcome to the Collective</h2>
+</header>
+
+<figure>
+  <img src="images/welcome_collective.png" alt="The Nerdcommand Collective">
+  <figcaption>We don't gamble. We engineer income.</figcaption>
+</figure>
+
+<p class="lead">Welcome to the Nerdcommand collective. This guide is built for the beginner. You want to trade with care. You want to trade with a plan. You are in the right place.</p>
+
+<p>Most people trade like they are at a casino. They guess. They hope. They lose. We do something different. We trade like the <strong class="k">house</strong>. The house does not hope. The house uses math. The house wins over time.</p>
+
+<p>In this book you will learn to use the urban landscape of the market. We focus on three tickers: <span class="term">SPX</span>, <span class="term">SOFI</span>, and <span class="term">MSFT</span>. These are our powerhouses. They are steady. They are consistent. They are the streets we know best.</p>
+
+<div class="box science">
+  <span class="tag">How This Book Works (The Science of Learning)</span>
+  <p>Your brain learns best when ideas come in <strong>small pieces</strong>, when you <strong>see</strong> the idea, and when you <strong>test yourself</strong>. So we built this book that way:</p>
+  <ul>
+    <li><strong>Short chunks.</strong> One idea at a time. No wall of words.</li>
+    <li><strong>Pictures.</strong> Every big idea has a picture. Your brain holds pictures longer than text.</li>
+    <li><strong>Recall quizzes.</strong> At the end of each chapter you get a few questions. Answer them out loud. This locks the idea in your head.</li>
+    <li><strong>Real numbers.</strong> We use real examples, so you can copy the steps.</li>
+  </ul>
+  <p>Read slow. Read twice. Do the quizzes. You will learn faster than you think.</p>
+</div>
+
+<div class="disclaimer">
+  <strong>Important:</strong> This book is for education only. It is not financial advice. Options trading has risk. You can lose money. Never trade money you cannot afford to lose. Start small. Practice first in a paper-trading account. Always do your own research and talk to a licensed financial professional before you invest.
+</div>
+
+<div class="toc">
+  <strong style="color:var(--teal);">WHAT'S INSIDE</strong>
+  <ol>
+    <li><a href="#ch1">The Nerdcommand Edge (Theta &amp; Delta)</a></li>
+    <li><a href="#ch2">The Big Three Tickers</a></li>
+    <li><a href="#ch3">Step-by-Step Execution</a></li>
+    <li><a href="#ch4">Exit Strategy: When to Take the Money</a></li>
+    <li><a href="#ch5">Risk Management: Protect the Capital</a></li>
+    <li><a href="#ch6">The Trader's Mind (Psychology)</a></li>
+    <li><a href="#ch7">Building the Account Step by Step</a></li>
+    <li><a href="#plan500">YOUR PLAN: The $500 Starter</a></li>
+    <li><a href="#plan1000">YOUR PLAN: The $1,000 Portfolio</a></li>
+    <li><a href="#exam">Final Exam &amp; Glossary</a></li>
+  </ol>
+</div>
+
+<!-- ===================== CHAPTER 1 ===================== -->
+<header class="chap" id="ch1">
+  <h2><span class="num">// CHAPTER 1</span>The Nerdcommand Edge</h2>
+  <p class="lead">The Statistical Advantage: Theta &amp; Delta</p>
+</header>
+
+<p>In the urban market, "The Greeks" are your street maps. The Greeks are just numbers that tell you how risky an option is. Two Greeks matter most to us: <span class="term">Delta</span> and <span class="term">Theta</span>.</p>
+
+<figure>
+  <img src="images/greeks_street_map.png" alt="The Greeks street map">
+  <figcaption>Delta is your shield. Theta is your clock. Learn to read both.</figcaption>
+</figure>
+
+<h3>1. Probability of Profit (POP)</h3>
+<p>We look for a <strong class="k">70 to 80 percent</strong> chance of success. This means, if you took 10 of these trades, about 7 or 8 of them would win. That is a strong edge.</p>
+
+<div class="box science">
+  <span class="tag">The Science: Law of Large Numbers</span>
+  <p>One trade is a coin flip. It can go any way. But many trades together follow the math. If your win rate is 75%, then over 100 trades you can expect about 75 wins. The math smooths out the bumps. This is why we trade the <strong>same setup</strong> over and over. We trust the long run.</p>
+</div>
+
+<h3>2. Delta (Directional Risk)</h3>
+<p>Delta is a number from 0 to 1. It tells you the chance the option ends "in the money." We sell options with a <strong class="k">Delta of 0.20 or lower</strong>. This means the stock has about an <strong>80% chance</strong> of staying away from our danger zone.</p>
+
+<p>Think of Delta like a shield. A Delta of 0.20 is a thick shield. A Delta of 0.50 is a thin shield. We want the thick one.</p>
+
+<h3>3. Theta (Time Decay) — Your Best Friend</h3>
+<figure>
+  <img src="images/theta_hourglass.png" alt="Theta hourglass">
+  <figcaption>Every tick of the clock drops money into your pocket.</figcaption>
+</figure>
+<p>Theta is the clock. Every day that passes, the option you sold loses value. That is good for you, because you <em>sold</em> it. When it loses value, you can buy it back cheaper. The difference is your profit.</p>
+
+<p>As a Nerdcommand trader, <strong class="k">you are the house, not the gambler</strong>. The gambler pays you for time. Time always runs out. So time always pays you.</p>
+
+<div class="box tip">
+  <span class="tag">The Edge</span>
+  <p>We only trade "high probability" setups. We do not care if the stock goes up, down, or sideways — as long as it does not move <em>too far</em> against us. In fact, the stock can even go <strong>down a little</strong> on a Bull Put Spread, and we still win. That is the power of the edge.</p>
+</div>
+
+<div class="quiz">
+  <h4>Quick Check (say the answers out loud)</h4>
+  <div class="q"><strong>1.</strong> What Delta do we look for when we sell an option?</div>
+  <div class="ans">Answer: 0.20 or lower (about an 80% chance of staying safe).</div>
+  <div class="q"><strong>2.</strong> Why is Theta good for us?</div>
+  <div class="ans">Answer: Because we sold the option. As time passes, the option loses value, and we keep the difference as profit.</div>
+  <div class="q"><strong>3.</strong> Are we the gambler or the house?</div>
+  <div class="ans">Answer: The house. We sell time. We use math, not hope.</div>
+</div>
+
+<!-- ===================== CHAPTER 2 ===================== -->
+<header class="chap" id="ch2">
+  <h2><span class="num">// CHAPTER 2</span>The Big Three Tickers</h2>
+  <p class="lead">SPX, SOFI, and MSFT — the streets we know best.</p>
+</header>
+
+<p>We do not chase every stock. We stick to three. Knowing a few stocks well is safer than knowing many stocks a little. This is called <span class="term">focus</span>.</p>
+
+<div class="box science">
+  <span class="tag">The Science: Expertise &amp; Pattern Recognition</span>
+  <p>Studies show experts beat generalists because they study ONE thing deeply. A chef who makes only burgers for years will outcook a chef who tries 50 dishes. Same in trading. When you watch the same three stocks every day, your brain builds a "feel" for them. You start to see the moves before they happen.</p>
+</div>
+
+<h3>1. SPX (S&amp;P 500 Index)</h3>
+<ul>
+  <li><strong>Why:</strong> No single-stock risk. SPX tracks the top 500 companies. One bad apple cannot sink the basket. It is the most stable environment.</li>
+  <li><strong>The Setup:</strong> 0DTE (Zero Days to Expiration) or 1–2 day spreads for quick income. Fast Theta. Fast pay.</li>
+</ul>
+
+<h3>2. SOFI (SoFi Technologies)</h3>
+<figure>
+  <img src="images/credit_spread_fortress.png" alt="Credit spread fortress">
+  <figcaption>Your sold strike is the wall. Your bought strike is the moat. Both keep the danger out.</figcaption>
+</figure>
+<ul>
+  <li><strong>Why:</strong> High volume and predictable price floors. It is the favorite for small accounts ($500 to $2,000).</li>
+  <li><strong>The Setup:</strong> Monthly Bull Put Spreads. Sell at the $6 or $7 support levels (the floor).</li>
+</ul>
+
+<h3>3. MSFT (Microsoft)</h3>
+<figure>
+  <img src="images/msft_safety_bracket.png" alt="MSFT safety bracket">
+  <figcaption>When price stays inside the brackets, the Profit Zone pays you.</figcaption>
+</figure>
+<ul>
+  <li><strong>Why:</strong> Consistent growth and high implied volatility. It rarely makes wild, erratic moves compared to other tech stocks.</li>
+  <li><strong>The Setup:</strong> Weekly Bear Call spreads during overbought cycles (when the stock has run up too fast).</li>
+</ul>
+
+<div class="box tip">
+  <span class="tag">Remember the Setup for Each</span>
+  <table>
+    <tr><th>Ticker</th><th>Spread Type</th><th>When</th><th>Account Size</th></tr>
+    <tr><td>SPX</td><td>0DTE / short spreads</td><td>Daily income</td><td>Larger accounts</td></tr>
+    <tr><td>SOFI</td><td>Bull Put Spread</td><td>Monthly</td><td>Small accounts</td></tr>
+    <tr><td>MSFT</td><td>Bear Call Spread</td><td>Weekly (overbought)</td><td>Medium accounts</td></tr>
+  </table>
+</div>
+
+<div class="quiz">
+  <h4>Quick Check</h4>
+  <div class="q"><strong>1.</strong> Which ticker is best for a $500 account?</div>
+  <div class="ans">Answer: SOFI. It has low share prices and clear support floors.</div>
+  <div class="q"><strong>2.</strong> Why is SPX safer than one stock?</div>
+  <div class="ans">Answer: It holds 500 companies, so one company's bad news is spread out.</div>
+</div>
+
+<!-- ===================== CHAPTER 3 ===================== -->
+<header class="chap" id="ch3">
+  <h2><span class="num">// CHAPTER 3</span>Step-by-Step Execution</h2>
+  <p class="lead">How to actually open a trade, one move at a time.</p>
+</header>
+
+<p>Here is the exact order of moves. Follow them like a recipe. Do not skip steps.</p>
+
+<div class="step"><div class="n">1</div><div>
+  <h4>Find the Floor (Technical Setup)</h4>
+  <p>Look for a stock trading above its <strong class="k">50-day Moving Average</strong>. The 50-day line is the average price over 50 days. When price is above it, the trend is healthy. This is your green light for a Bull Put Spread.</p>
+  <p>For SOFI, also look for strong support — a price level it has bounced off many times before (like $6 or $7).</p>
+</div></div>
+
+<div class="step"><div class="n">2</div><div>
+  <h4>Check the Greeks</h4>
+  <p>Open your options chain. Check two things:</p>
+  <ul>
+    <li><strong>Delta:</strong> around <code>0.15</code> on the sold leg.</li>
+    <li><strong>Theta:</strong> positive (you are earning daily).</li>
+  </ul>
+  <p>If Delta is too high (like 0.40), walk away. The shield is too thin.</p>
+</div></div>
+
+<div class="step"><div class="n">3</div><div>
+  <h4>Open the Spread</h4>
+  <ol>
+    <li><strong>Sell to Open</strong> the lower strike (where you think the stock will NOT go). This brings in money (the premium).</li>
+    <li><strong>Buy to Open</strong> a strike even lower. This is your insurance. It caps your loss if something goes wrong.</li>
+  </ol>
+  <p>The money you collect up front minus the cost of insurance = your <strong>net credit</strong>. That credit is yours to keep if the stock stays above your sold strike.</p>
+</div></div>
+
+<div class="step"><div class="n">4</div><div>
+  <h4>Walk Through a Real SOFI Example</h4>
+  <p>Say SOFI is trading at $8.00. You think it will stay above $7.</p>
+  <ul>
+    <li><strong>Sell to Open</strong> the $7.00 Put. You collect about <code>$0.40</code> per share = <strong>$40</strong> (1 contract = 100 shares).</li>
+    <li><strong>Buy to Open</strong> the $6.50 Put. You pay about <code>$0.20</code> per share = <strong>$20</strong>.</li>
+    <li>Your <strong>net credit</strong> = <strong>$40 − $20 = $20</strong>. That is cash in your account today.</li>
+    <li>Your <strong>max risk</strong> = the spread width ($0.50 × 100 = $50) minus the credit = <strong>$30</strong>.</li>
+  </ul>
+  <p>If SOFI stays above $7, you keep the full <strong>$20</strong>. That is a 40% return on your $30 risk. Not bad for waiting a few weeks.</p>
+</div></div>
+
+<div class="box tip">
+  <span class="tag">Nerdcommand Rule #1</span>
+  <p>Never risk more than <strong class="k">2%</strong> of your total account on a single trade. If you have $500, your max risk should be $10. This is how you stay in the game long enough to win. One bad trade can never take you out.</p>
+</div>
+
+<div class="quiz">
+  <h4>Quick Check</h4>
+  <div class="q"><strong>1.</strong> What moving average tells you the trend is healthy?</div>
+  <div class="ans">Answer: The 50-day Moving Average. Price above it = green light.</div>
+  <div class="q"><strong>2.</strong> In a spread, what does "Buy to Open" do for you?</div>
+  <div class="ans">Answer: It is your insurance. It caps your loss.</div>
+</div>
+
+<!-- ===================== CHAPTER 4 ===================== -->
+<header class="chap" id="ch4">
+  <h2><span class="num">// CHAPTER 4</span>Exit Strategy: When to Take the Money</h2>
+  <p class="lead">Knowing when to leave is just as important as knowing when to enter.</p>
+</header>
+
+<figure>
+  <img src="images/exit_strategy.png" alt="Exit strategy">
+  <figcaption>Take profit early. Cut losses early. Discipline beats hope.</figcaption>
+</figure>
+
+<p>Most beginners know how to open a trade. Few know how to close it. That is where they lose. Let's fix that.</p>
+
+<h3>Rule A: Take Profit at 50%</h3>
+<p>If you collected $20 in credit, your goal is to buy it back when it drops to about $10. You keep the other $10. Then close the trade. Walk away. Why? Because the last $10 takes a long time and adds extra risk. Take the sure win.</p>
+
+<div class="box science">
+  <span class="tag">The Science: Diminishing Returns</span>
+  <p>Theta decay is fast at first, then slow. The first 50% of profit comes quickly. The last 50% crawls. You risk more time (and more market exposure) for less reward. Smart traders take the quick win and redeploy the money.</p>
+</div>
+
+<h3>Rule B: Manage at 21 Days to Expiration</h3>
+<p>If your trade has 21 days or fewer left, watch it close. Gamma risk rises near expiration — the option can swing faster. If you are near your max profit, just close it.</p>
+
+<h3>Rule C: The Stop-Loss Line</h3>
+<p>If the trade goes against you and the loss hits <strong class="k">2x your credit</strong>, close it. If you collected $20, close it when the loss hits $40. Do not hope. Do not "wait for it to come back." Cut it. Live to trade another day.</p>
+
+<div class="box warn">
+  <span class="tag">Warning</span>
+  <p>Hoping a losing trade turns around is the #1 way small accounts die. The math does not care about your feelings. Follow the line. Close the trade.</p>
+</div>
+
+<table>
+  <tr><th>Situation</th><th>Action</th></tr>
+  <tr><td>You hit 50% of max profit</td><td>Close it. Take the win.</td></tr>
+  <tr><td>21 days or fewer to expiration</td><td>Watch closely. Close if near profit.</td></tr>
+  <tr><td>Loss hits 2x your credit</td><td>Close it. Stop the bleed.</td></tr>
+  <tr><td>You feel panicked or greedy</td><td>Step away. Re-read this chapter.</td></tr>
+</table>
+
+<div class="quiz">
+  <h4>Quick Check</h4>
+  <div class="q"><strong>1.</strong> When do you take profit on a credit spread?</div>
+  <div class="ans">Answer: At about 50% of max profit.</div>
+  <div class="q"><strong>2.</strong> When do you cut a losing trade?</div>
+  <div class="ans">Answer: When the loss hits 2x your collected credit.</div>
+</div>
+
+<!-- ===================== CHAPTER 5 ===================== -->
+<header class="chap" id="ch5">
+  <h2><span class="num">// CHAPTER 5</span>Risk Management: Protect the Capital</h2>
+  <p class="lead">Your capital is your army. Don't send it into a losing battle.</p>
+</header>
+
+<figure>
+  <img src="images/risk_shield.png" alt="Risk shield">
+  <figcaption>Keep the shield up. Only risk 2% per trade.</figcaption>
+</figure>
+
+<p>You can be the best analyst in the world. If your risk is bad, you will still go broke. Risk rules come <strong>first</strong>. Strategy comes second.</p>
+
+<h3>The Five Nerdcommand Risk Rules</h3>
+<ol>
+  <li><strong>2% Rule:</strong> Risk no more than 2% of your account on one trade.</li>
+  <li><strong>3-Trade Cap:</strong> Never have more than 3 trades open at once (in a small account). Focus.</li>
+  <li><strong>No Earnings:</strong> Never hold a trade through an earnings report. One bad report can blow past your spread.</li>
+  <li><strong>Always Use Insurance:</strong> Never sell a naked option. Always buy the protection leg. Spreads cap your loss.</li>
+  <li><strong>Keep Cash:</strong> Keep at least 30% of your account in cash. Cash is oxygen. You need it to take new trades.</li>
+</ol>
+
+<div class="box science">
+  <span class="tag">The Science: Surviving the Long Game</span>
+  <p>Even with an 80% win rate, you WILL have losing trades. A row of 3 losses in a row happens more often than people think. If you risk 10% per trade, three losses in a row drops your account 27%. If you risk 2%, three losses drop it only 6%. Small risk means you survive the bad streak to reach the good streak.</p>
+</div>
+
+<table>
+  <tr><th>Account Size</th><th>Max Risk per Trade (2%)</th></tr>
+  <tr><td>$500</td><td>$10</td></tr>
+  <tr><td>$1,000</td><td>$20</td></tr>
+  <tr><td>$2,500</td><td>$50</td></tr>
+  <tr><td>$5,000</td><td>$100</td></tr>
+</table>
+
+<!-- ===================== CHAPTER 6 ===================== -->
+<header class="chap" id="ch6">
+  <h2><span class="num">// CHAPTER 6</span>The Trader's Mind (Psychology)</h2>
+  <p class="lead">Your biggest opponent is not the market. It is your own brain.</p>
+</header>
+
+<p>Trading is 20% strategy and 80% psychology. Let's train the mind.</p>
+
+<div class="box science">
+  <span class="tag">The Science: Two Brain Systems</span>
+  <p>Your brain has two modes. <strong>System 1</strong> is fast and emotional — fear, greed, panic. <strong>System 2</strong> is slow and logical — your plan, your rules. The market tries to wake up System 1. Our job is to keep System 2 in charge. We do this with a written plan and rules we follow like a robot.</p>
+</div>
+
+<h3>The Four Mindset Traps</h3>
+<ul>
+  <li><strong>FOMO (Fear Of Missing Out):</strong> "The stock is flying, I need in!" — No. Wait for your setup. The next trade always comes.</li>
+  <li><strong>Revenge Trading:</strong> "I lost, I'll win it back right now!" — No. Step away. The market does not owe you.</li>
+  <li><strong>Overconfidence:</strong> "I won 5 in a row, I'm a genius!" — No. You are following the math. Keep the risk the same.</li>
+  <li><strong>Hope:</strong> "It will come back, just wait." — No. If it hits your stop, close it. Hope is not a strategy.</li>
+</ul>
+
+<h3>Your Daily Routine (Build the Habit)</h3>
+<div class="box tip">
+  <span class="tag">The Nerdcommand Daily Loop</span>
+  <ul>
+    <li><strong>Before market:</strong> Check the news. Check your three tickers. Write your plan for the day.</li>
+    <li><strong>During market:</strong> Only act on your plan. No impulse trades.</li>
+    <li><strong>After market:</strong> Log every trade in a journal. Note what worked and what did not.</li>
+  </ul>
+</div>
+
+<div class="box science">
+  <span class="tag">The Science: Habit Loops</span>
+  <p>A habit has three parts: <strong>Cue → Routine → Reward</strong>. Your cue is the morning market open. Your routine is your daily loop. Your reward is the log entry and the steady income. Repeat this every day for 30 days. It becomes automatic. Automatic beats emotional, every time.</p>
+</div>
+
+<!-- ===================== CHAPTER 7 ===================== -->
+<header class="chap" id="ch7">
+  <h2><span class="num">// CHAPTER 7</span>Building the Account Step by Step</h2>
+  <p class="lead">From small to strong, one rung at a time.</p>
+</header>
+
+<figure>
+  <img src="images/growth_chart.png" alt="Growth staircase">
+  <figcaption>Each step is a level up. Don't skip steps.</figcaption>
+</figure>
+
+<p>Here is the truth nobody tells beginners: <strong>growing a small account is slow on purpose.</strong> Slow is safe. Safe keeps you in the game. In the game, compounding does the rest.</p>
+
+<div class="box science">
+  <span class="tag">The Science: Compounding</span>
+  <p>Compounding means your profit earns profit. If you grow $500 by 5% a month, in one year it becomes about $897. In two years, about $1,610. The growth curves up like a rocket. But it only works if you never blow up the account. So rule #1 is always: <strong>don't lose the base.</strong></p>
+</div>
+
+<h3>The Four Levels</h3>
+<table>
+  <tr><th>Level</th><th>Account</th><th>Goal</th></tr>
+  <tr><td>1 — Trainee</td><td>$0 – $1,000</td><td>Learn. Paper trade first. Then 1 small real trade at a time.</td></tr>
+  <tr><td>2 — Operator</td><td>$1,000 – $3,000</td><td>2–3 SOFI spreads at a time. Build consistency.</td></tr>
+  <tr><td>3 — Engineer</td><td>$3,000 – $10,000</td><td>Add MSFT weekly spreads. Diversify.</td></tr>
+  <tr><td>4 — Commander</td><td>$10,000+</td><td>Add SPX. Scale size with rules.</td></tr>
+</table>
+
+<p>Your two personal plans below match Level 1 and the start of Level 2.</p>
+
+<!-- ===================== PLAN $500 ===================== -->
+<header class="chap" id="plan500">
+  <h2><span class="num">// YOUR PERSONAL PLAN</span>What to Do with $500</h2>
+  <p class="lead">Your starter account. Built for you, step by step.</p>
+</header>
+
+<div class="plan">
+  <h3>Level 1: The $500 Starter — The Trainee Mission</h3>
+  <p>With $500, your job is NOT to make a lot of money fast. Your job is to <strong>not lose it</strong> while you learn the real game. Here is your exact plan:</p>
+
+  <div class="step"><div class="n">1</div><div>
+    <h4>Open the right account (Day 1–3)</h4>
+    <ul>
+      <li>Open a brokerage that allows options spreads and <strong>paper trading</strong> (fake money, real practice). Examples to research: Thinkorswim (Charles Schwab), Webull, Tastytrade, Robinhood.</li>
+      <li>Apply for <strong>Level 2 options approval</strong> (this lets you trade spreads). You may need to mark experience as "limited" and income honestly. Each broker differs.</li>
+      <li>Do NOT deposit the $500 yet. Practice with paper money first.</li>
+    </ul>
+  </div></div>
+
+  <div class="step"><div class="n">2</div><div>
+    <h4>Paper trade for 2 weeks (Weeks 1–2)</h4>
+    <ul>
+      <li>Trade <strong>fake</strong> SOFI Bull Put Spreads only. Goal: 5 paper trades.</li>
+      <li>Use this exact setup each time: stock above 50-day MA, sell the 0.15 Delta put, buy the strike $0.50 below.</li>
+      <li>Log every paper trade. Win or lose. This trains your eye and your discipline.</li>
+    </ul>
+  </div></div>
+
+  <div class="step"><div class="n">3</div><div>
+    <h4>Deposit $500 (Week 3)</h4>
+    <ul>
+      <li>Now put the real money in. Max risk per trade = <strong>$10</strong> (2% rule).</li>
+      <li>Keep <strong>$350 (70%) in cash</strong>. Only use about $150 as your working "risk budget."</li>
+    </ul>
+  </div></div>
+
+  <div class="step"><div class="n">4</div><div>
+    <h4>Your first REAL trade (Week 3)</h4>
+    <p>One SOFI Bull Put Spread:</p>
+    <ul>
+      <li>Only trade when SOFI is above its 50-day MA and near a support floor.</li>
+      <li>Sell a put with Delta ~0.15. Buy the strike $0.50 below. Choose a spread where max loss ≤ $10. (This may mean a $0.50-wide spread, 1 contract.)</li>
+      <li>Target: collect a small credit. Take profit at 50%. Cut loss at 2x credit.</li>
+      <li><strong>One trade at a time.</strong> Do not open a second until the first closes.</li>
+    </ul>
+  </div></div>
+
+  <div class="step"><div class="n">5</div><div>
+    <h4>The $500 routine (Weeks 4–12)</h4>
+    <ul>
+      <li>1 trade per week, max. Quality over quantity.</li>
+      <li>Goal: win 7 of every 10 trades. Small steady credits.</li>
+      <li>Reinvest all profit back into the account. Do NOT withdraw.</li>
+      <li>Aim: grow $500 → $600 in ~3 months. Slow, steady, SAFE.</li>
+    </ul>
+  </div></div>
+
+  <div class="box warn">
+    <span class="tag">Hard Rules for $500</span>
+    <ul>
+      <li>No day trading. No 0DTE yet. No earnings trades. No more than 1 open trade.</li>
+      <li>If you lose 2 trades in a row → STOP for one full week. Review your journal.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== PLAN $1000 ===================== -->
+<header class="chap" id="plan1000">
+  <h2><span class="num">// YOUR PERSONAL PLAN</span>What to Do with $1,000</h2>
+  <p class="lead">Build a small portfolio. Two tickers working for you.</p>
+</header>
+
+<div class="plan gold">
+  <h3>Level 2: The $1,000 Portfolio — The Operator Mission</h3>
+  <p>With $1,000 you have room to run <strong>two tickers</strong> at once. This is your first real "portfolio." Here is the build, step by step.</p>
+
+  <div class="step"><div class="n">1</div><div>
+    <h4>Split the capital (Day 1)</h4>
+    <table>
+      <tr><th>Bucket</th><th>Amount</th><th>Job</th></tr>
+      <tr><td>Cash Reserve</td><td>$600 (60%)</td><td>Safety net. Never touched except for new trades.</td></tr>
+      <tr><td>SOFI Engine</td><td>$250</td><td>Monthly Bull Put Spreads.</td></tr>
+      <tr><td>MSFT Engine</td><td>$150</td><td>Weekly Bear Call Spreads (overbought only).</td></tr>
+    </table>
+    <p>Max risk per trade now = <strong>$20</strong> (2% of $1,000). Still small. Still safe.</p>
+  </div></div>
+
+  <div class="step"><div class="n">2</div><div>
+    <h4>The SOFI Engine — Monthly Income (1 trade / month)</h4>
+    <ul>
+      <li>Sell a SOFI Bull Put Spread ~30–45 days out.</li>
+      <li>Sold strike at Delta ~0.15, near the $6 or $7 floor (below current price).</li>
+      <li>Spread width $0.50–$1.00. Max risk ≤ $20.</li>
+      <li>Target: collect ~$8–$12 credit. Take profit at 50% (~$4–$6). Close before the last 21 days.</li>
+      <li>Expected: this trade wins ~75–80% of the time.</li>
+    </ul>
+  </div></div>
+
+  <div class="step"><div class="n">3</div><div>
+    <h4>The MSFT Engine — Weekly Income (1 trade / week, only when overbought)</h4>
+    <ul>
+      <li>Only enter when MSFT has run up fast and looks overbought (RSI high, far above short-term averages).</li>
+      <li>Sell a Bear Call Spread (sell a call above price, buy a higher call as insurance).</li>
+      <li>Sold call at Delta ~0.15–0.20. Spread width to keep max risk ≤ $20.</li>
+      <li>Target: collect ~$5–$8 credit. Take profit at 50%.</li>
+      <li>If MSFT is NOT overbought → SKIP the week. Patience is a position.</li>
+    </ul>
+  </div></div>
+
+  <div class="step"><div class="n">4</div><div>
+    <h4>Your weekly schedule</h4>
+    <table>
+      <tr><th>Day</th><th>Task</th></tr>
+      <tr><td>Monday</td><td>Review both tickers. Check 50-day MA and support/resistance.</td></tr>
+      <tr><td>Wednesday</td><td>Manage open trades. Take profit if at 50%.</td></tr>
+      <tr><td>Friday</td><td>Close trades near profit. Log results in journal.</td></tr>
+      <tr><td>End of month</td><td>Open one new SOFI monthly. Review win rate.</td></tr>
+    </table>
+  </div></div>
+
+  <div class="step"><div class="n">5</div><div>
+    <h4>The growth goal</h4>
+    <ul>
+      <li>Target: <strong>4–6% per month</strong> on working capital. That is realistic and sustainable.</li>
+      <li>Reinvest ALL profit. Compounding is your rocket fuel.</li>
+      <li>Aim: $1,000 → $1,250 in ~4–6 months. Then you graduate toward Level 3.</li>
+    </ul>
+  </div></div>
+
+  <div class="box tip">
+    <span class="tag">Portfolio Rule</span>
+    <p>At any time, have <strong>no more than 3 open trades</strong> and never more than 1 per ticker at once. This keeps your mind clear and your risk contained.</p>
+  </div>
+
+  <div class="box warn">
+    <span class="tag">When to Pause</span>
+    <ul>
+      <li>3 losses in a row → stop for 1 week. Review the journal.</li>
+      <li>Account drops below $850 (–15%) → stop real trading. Go back to paper for 2 weeks.</li>
+      <li>Big news event (Fed, CPI, earnings) → close early or don't open new trades that week.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== EXAM + GLOSSARY ===================== -->
+<header class="chap" id="exam">
+  <h2><span class="num">// FINAL EXAM</span>Test Yourself</h2>
+  <p class="lead">Answer these before you place your first real trade.</p>
+</header>
+
+<div class="quiz">
+  <div class="q"><strong>1.</strong> What Delta do we sell, and what does it mean?</div>
+  <div class="ans">0.20 or lower — about an 80% chance the stock stays out of our danger zone.</div>
+  <div class="q"><strong>2.</strong> Why does Theta help a credit seller?</div>
+  <div class="ans">Time decay lowers the option's value. We sold it, so we buy it back cheaper and keep the difference.</div>
+  <div class="q"><strong>3.</strong> Name the three Nerdcommand tickers and their best setups.</div>
+  <div class="ans">SPX (0DTE/short spreads), SOFI (monthly Bull Put Spreads), MSFT (weekly Bear Call Spreads when overbought).</div>
+  <div class="q"><strong>4.</strong> What is the 2% rule, and what is your max risk on a $1,000 account?</div>
+  <div class="ans">Risk no more than 2% per trade = $20 max risk.</div>
+  <div class="q"><strong>5.</strong> When do you take profit, and when do you cut a loss?</div>
+  <div class="ans">Take profit at ~50% of max profit. Cut loss when it reaches 2x your collected credit.</div>
+  <div class="q"><strong>6.</strong> Name two mindset traps and how to beat them.</div>
+  <div class="ans">FOMO and revenge trading — beat them with a written plan and a trading journal.</div>
+  <div class="q"><strong>7.</strong> What is the first thing you do with $500 before trading real money?</div>
+  <div class="ans">Paper trade for 2 weeks. Practice the setup with fake money.</div>
+</div>
+
+<h3>Glossary (Urban Edition)</h3>
+<table>
+  <tr><th>Term</th><th>Plain Meaning</th></tr>
+  <tr><td>Credit Spread</td><td>Trade where you collect money up front. You keep it if the stock behaves.</td></tr>
+  <tr><td>Bull Put Spread</td><td>Sell a put and buy a lower put. You win if the stock stays up.</td></tr>
+  <tr><td>Bear Call Spread</td><td>Sell a call and buy a higher call. You win if the stock stays down.</td></tr>
+  <tr><td>Delta</td><td>Directional risk. Lower Delta = thicker shield = safer.</td></tr>
+  <tr><td>Theta</td><td>Time decay. Pays the seller every day.</td></tr>
+  <tr><td>Premium</td><td>The money you collect for selling the option.</td></tr>
+  <tr><td>50-day MA</td><td>Average price over 50 days. Your trend green light.</td></tr>
+  <tr><td>0DTE</td><td>Zero days to expiration. Same-day trade.</td></tr>
+  <tr><td>Paper Trading</td><td>Practice trading with fake money.</td></tr>
+  <tr><td>POP</td><td>Probability of Profit. We want 70–80%.</td></tr>
+  <tr><td>Max Risk</td><td>The most you can lose on a trade. Always known in advance.</td></tr>
+</table>
+
+<div class="center" style="margin-top:30px;">
+  <p style="color:var(--gold);font-size:20px;letter-spacing:1px;">YOU ARE NOW EQUIPPED.</p>
+  <p style="color:var(--muted);">Train the eye. Follow the rules. Be the house.</p>
+</div>
+
+<div class="disclaimer" style="margin-top:30px;">
+  <strong>Risk Disclosure:</strong> This book is educational content, not financial, investment, or trading advice. Options trading involves significant risk of loss and is not suitable for all investors. Past performance does not guarantee future results. The examples, prices, and percentages are for illustration only and may not reflect current market conditions. Always do your own research and consult a licensed financial professional before investing. Never risk money you cannot afford to lose. Nerdcommand is an educational brand and is not a registered investment advisor.
+</div>
+
+<div class="footer">
+  <p>NERDCOMMAND &copy; 2026 — The Urban Trader's Guide to Credit Spreads</p>
+  <p>We don't gamble. We engineer income.</p>
+</div>
+
+</div><!-- /wrap -->
+</body>
+</html>
